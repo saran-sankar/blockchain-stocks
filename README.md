@@ -6,6 +6,7 @@ Based on: https://github.com/dvf/blockchain
 Supports MacOS and Linux
 
 Requirements:
+Python 3.6+
 Flask (pip install flask)
 Node.js and npm
 
