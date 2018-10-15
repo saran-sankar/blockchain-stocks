@@ -19,3 +19,5 @@ Or use $python blockchain.py -p <port (default:5000)> to configure required port
 (5000,5001 and 5002 -miners
 5003 -trader)
 
+PS: Proof verification is incomplete: acknoledgement from the company is not included
+
