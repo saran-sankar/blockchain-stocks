@@ -1,5 +1,5 @@
 # CryptoStock
-A model of blockchain for stock trading
+A model of blockchain that can be used for stock trading and can replace stock exchanges
 
 Based on: https://github.com/dvf/blockchain
 
