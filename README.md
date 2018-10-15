@@ -1,6 +1,8 @@
 # CryptoStock
 Blockchain for stock trading
 
+Based on: https://github.com/dvf/blockchain
+
 Supports MacOS and Linux
 
 Requirements:
