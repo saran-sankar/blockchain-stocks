@@ -25,7 +25,7 @@ For adding the required node modules, run $npm install
 
 Transaction procedure: trader gets receiving address from the company side (receiving_address.js) -> trader requests to buy stocks (trade.js) -> trader pays the company with their newly generated signature sender address (not the private key) -> company acknowledges the payment by signing with their secret key (acknowledge.js) -> miner verifies the transaction (verify.js) -> miner forges a new block with all verified transactions (mine.js) -> trader gets the ownership of the stocks and the right to claim using thier private key 
 
-(since the companies will have an automated payment system, acknowledgement from the trader for receiving payment is not included. Instead, companies themselves send an automatic acknoledgement to the miners to complete the transaction)
+(since the companies will have an automated payment system, acknowledgement from the trader for receiving payment is not included. Instead, companies themselves send an automatic acknowledgement to the miners to complete the transaction)
 
 Execution of trade.js and acknowledge.js
 
