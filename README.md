@@ -10,7 +10,7 @@ Python 3.6+
 Flask (pip install flask)
 Node.js and npm
 
-create a virtual environment ($python3 -m venv env)
+Create a virtual environment ($python3 -m venv env)
 
 $sudo npm install -g ttab (optional) for automatically configuring the network (change the virtual environment directory path)
 $chmod +x config_network.sh
@@ -25,7 +25,7 @@ For adding the required node modules, run $npm install
 
 Transaction procedure: trader gets receiving address from the company side (receiving_address.js) -> trader requests to buy stocks (trade.js) -> trader pays the company with their newly generated signature sender address (not the private key) -> company acknowledges the payment by signing with their secret key (acknowledge.js) -> miner verifies the transaction (verify.js) -> miner forges a new block with all verified transactions (mine.js) -> trader gets the ownership of the stocks and the right to claim using thier private key 
 
-(since the companies will have an automated payment system, acknowledgement from the trader for receiving payment is not included. Instead, companies themselves send an automatic acknowledgement to the miners to complete the transaction)
+(Since the companies will have an automated payment system, acknowledgement from the trader for receiving payment is not included. Instead, companies themselves send an automatic acknowledgement to the miners to complete the transaction when the trader sells stocks)
 
 Execution of trade.js and acknowledge.js
 node trade.js <amount> <stock symbol(eg:NKE)> <sender address(eg: a0bdbb8fa08647108cfbf6478bbfe09c)>
