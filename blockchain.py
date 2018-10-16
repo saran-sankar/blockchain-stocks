@@ -13,7 +13,8 @@ class Blockchain:
         self.current_transactions = []
         self.chain = []
         self.nodes = set()
-
+        self.acknowledgements = []
+        
         # Create the genesis block
         self.new_block(previous_hash='1', proof=100)
 
@@ -115,8 +116,9 @@ class Blockchain:
             'previous_hash': previous_hash or self.hash(self.chain[-1]),
         }
 
-        # Reset the current list of transactions
+        # Reset the current list of transactions and acknowledgements
         self.current_transactions = []
+        self.acknowledgements = []
 
         self.chain.append(block)
         return block
@@ -262,8 +264,20 @@ def verify_transaction(): #miner side
     
     neighbours = blockchain.nodes
         
-    # Grab and verify the chains from all the nodes in our network
+    # Grab the current transactions from all the nodes in our network for verification
     response2=[]
+    for node in neighbours:
+            url=f'http://{node}/transactions/acks'
+    
+            headers = {
+            'cache-control': "no-cache",
+            'Postman-Token': "c2cdc535-a18f-4c3c-ae0f-2e507cb28ade"
+            }
+            
+            response = requests.request("GET", url, headers=headers)
+            blockchain.acknowledgements.append(response.json()['acknowledgements'])
+            print("acks:",blockchain.acknowledgements)
+    
     for node in neighbours:
             url=f'http://{node}/transactions/current'
 
@@ -277,13 +291,26 @@ def verify_transaction(): #miner side
 
             print(response.json())
             if response.json() !={}:
-                    blockchain.current_transactions.append(response.json())
-                    #print(blockchain.current_transactions[-1].text)
+                    print(response.json)
+                    previous_hash = blockchain.chain[-1]['previous_hash']
+                    sender = response.json()['sender']
+                    recipient = response.json()['recipient']
+                    stocksymbol = response.json()['stocksymbol']
+                    acknowledgement = hashlib.sha256((previous_hash+sender+recipient+stocksymbol).encode()).hexdigest()
                     response2.append({
-                    'url' : url,
-                    'message': 'Transaction has been verified',
-                    'block' : blockchain.current_transactions
-                    })
+                                     'url' : url,
+                                     'message': 'No transaction to verify'
+                                     })
+                    for i in range(len(blockchain.acknowledgements)):
+                                if(acknowledgement in blockchain.acknowledgements[i]):
+                                             blockchain.current_transactions.append(response.json())
+                                             #print(blockchain.current_transactions[-1].text)
+                                             response2[-1]={
+                                             'url' : url,
+                                             'message': 'Transaction has been verified',
+                                             'block' : blockchain.current_transactions
+                                             }
+                                             break
             else:
                 response2.append({
                 'url' : url,
@@ -330,6 +357,26 @@ def consensus():
 
     return jsonify(response), 200
 
+@app.route('/transactions/ack/new', methods=['POST'])
+def acknowledge():
+    values = request.get_json()
+    sender = values.get('sender')
+    recipient = values.get('recipient')
+    stocksymbol = values.get('stocksymbol')
+    previous_hash = blockchain.chain[-1]['previous_hash']
+    acknowledgement = hashlib.sha256((previous_hash+sender+recipient+stocksymbol).encode()).hexdigest()
+    blockchain.acknowledgements.append(acknowledgement)
+    response = {
+        "acknowledgements": blockchain.acknowledgements
+    }
+    return jsonify(response)
+
+@app.route('/transactions/acks', methods=['GET'])
+def acknowledgements():
+    response = {
+        "acknowledgements": blockchain.acknowledgements
+    }
+    return jsonify(response)
 
 if __name__ == '__main__':
     from argparse import ArgumentParser

@@ -10,7 +10,8 @@ body:
     { nodes:
         [ 'http://0.0.0.0:5001',
          'http://0.0.0.0:5002',
-         'http://0.0.0.0:5003'] },
+         'http://0.0.0.0:5003',
+         'http://0.0.0.0:5004'] },
     json: true };
 
 request(options, function (error, response, body) {
@@ -44,7 +45,7 @@ request(options, function (error, response, body) {
                         if (error) throw new Error(error);
                         
                         console.log("verified")
-                        //console.log(body);
+                        console.log(body);
                         
 
                         });

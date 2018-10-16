@@ -68,16 +68,16 @@ request(options, function (error, response, body) {
                 //buy stocks
                 var request = require("request");
                 var k = []
+                // eg: node trade.js 200 AAPL a0bdbb8fa08647108cfbf6478bbfe09c
                 process.argv.forEach((val, index) => {
                                      //console.log(`${index}: ${val}`);
                                      k.push(`${val}`)
                                      });
-                stocksymbol = 'AAPL'
                 stocksymbol = k[k.length-2]
-                amount = parseInt(k[k.length-1], 10)
-                //amount = amount = Math.round(100 + Math.random() *(-200))
+                amount = parseInt(k[k.length-3], 10)
+                recipient = k[k.length-1]
                 previous_hash = chain['chain'][chain['chain'].length-1]['previous_hash']
-                console.log(stocksymbol,amount)
+                console.log(stocksymbol,amount,recipient)
                 
                 sender_id = sender+previous_hash
                 var crypto = require('crypto');
@@ -87,6 +87,7 @@ request(options, function (error, response, body) {
                 hash_new+=sender_id[i]
                 }
                 sender_id = hash_new;
+                console.log("sender address:",sender_id)
                 var options = { method: 'POST',
                 url: 'http://0.0.0.0:5003/transactions/new',
                 headers:
@@ -96,7 +97,7 @@ request(options, function (error, response, body) {
                 body:
                 { sender: sender_id,
                 stocksymbol: stocksymbol,
-                recipient: 'cb716131cd43471fbe2dded005588750',
+                recipient: recipient,
                 amount: amount },
                 json: true };
                 //console.log(options)
