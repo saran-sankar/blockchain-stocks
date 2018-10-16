@@ -27,6 +27,6 @@ Transaction procedure: trader gets receiving address from the company side (rece
 
 (Since the companies will have an automated payment system, acknowledgement from the trader for receiving payment is not included. Instead, companies themselves send an automatic acknowledgement to the miners to complete the transaction when the trader sells stocks)
 
-Execution of trade.js and acknowledge.js
+Execution of trade.js and acknowledge.js: 
 node trade.js <amount> <stock symbol(eg:NKE)> <sender address(eg: a0bdbb8fa08647108cfbf6478bbfe09c)>
 node acknowledge.js <stock symbol(eg:NKE)> <sender address(eg: ef716131cd43471fbe2dded005588789)>
