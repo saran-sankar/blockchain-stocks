@@ -14,6 +14,7 @@ class Blockchain:
         self.chain = []
         self.nodes = set()
         self.acknowledgements = []
+        self.verified = []
         
         # Create the genesis block
         self.new_block(previous_hash='1', proof=100)
@@ -302,9 +303,10 @@ def verify_transaction(): #miner side
                                      'message': 'No transaction to verify'
                                      })
                     for i in range(len(blockchain.acknowledgements)):
-                                if(acknowledgement in blockchain.acknowledgements[i]):
+                                if(acknowledgement in blockchain.acknowledgements[i] and acknowledgement not in blockchain.verified):
                                              blockchain.current_transactions.append(response.json())
                                              #print(blockchain.current_transactions[-1].text)
+                                             blockchain.verified.append(acknowledgement)
                                              response2[-1]={
                                              'url' : url,
                                              'message': 'Transaction has been verified',
