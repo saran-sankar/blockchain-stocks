@@ -19,7 +19,7 @@ $./config_network.sh
 Or run $python blockchain.py -p <port (default:5000)> to configure required ports manually
 (default is 5000,5001 and 5002 for miners,
 5003 for a trader
-and 5004 for a company. You can add more ports and change the files accordingly)
+and 5004 for a company. You can add more ports after making changes in the code accordingly)
 
 For adding the required node modules, run $npm install 
 
