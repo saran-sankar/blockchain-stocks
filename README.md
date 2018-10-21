@@ -29,6 +29,6 @@ Transaction procedure: trader gets receiving address from the company side (rece
 
 Execution of trade.js and acknowledge.js: 
 
-$node trade.js <qty> <stock symbol(eg:NKE)> <sender address(eg: a0bdbb8fa08647108cfbf6478bbfe09c)>
+$node trade.js <qty(eg:100)> <stock symbol(eg:NKE)> <sender address(eg: a0bdbb8fa08647108cfbf6478bbfe09c)>
   
 $node acknowledge.js <stock symbol(eg:NKE)> <sender address(eg: ef716131cd43471fbe2dded005588789)>
