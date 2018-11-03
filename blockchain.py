@@ -297,7 +297,7 @@ def verify_transaction(): #miner side
                     sender = response.json()['sender']
                     recipient = response.json()['recipient']
                     stocksymbol = response.json()['stocksymbol']
-                    acknowledgement = hashlib.sha256((previous_hash+sender+recipient+stocksymbol).encode()).hexdigest()
+                    acknowledgement = hashlib.sha256((sender+recipient+stocksymbol).encode()).hexdigest()
                     response2.append({
                                      'url' : url,
                                      'message': 'No transaction to verify'
@@ -366,7 +366,7 @@ def acknowledge():
     recipient = values.get('recipient')
     stocksymbol = values.get('stocksymbol')
     previous_hash = blockchain.chain[-1]['previous_hash']
-    acknowledgement = hashlib.sha256((previous_hash+sender+recipient+stocksymbol).encode()).hexdigest()
+    acknowledgement = hashlib.sha256((sender+recipient+stocksymbol).encode()).hexdigest()
     blockchain.acknowledgements.append(acknowledgement)
     response = {
         "acknowledgements": blockchain.acknowledgements
