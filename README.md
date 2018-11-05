@@ -18,14 +18,14 @@ $./config_network.sh
 
 Or run $python blockchain.py -p <port (default:5000)> to configure required ports manually
 (default is 5000,5001 and 5002 for miners,
-5003 for a trader
+5003 for a trader/investor
 and 5004 for a company. You can add more ports after making changes in the code accordingly)
 
 For adding the required node modules, run $npm install 
 
-Transaction procedure: trader gets receiving address from the company side (receiving_address.js) -> trader requests to buy stocks (trade.js) -> trader pays the company with their newly generated signature sender address (not the private key) -> company acknowledges the payment by signing with their secret key (acknowledge.js) -> miner verifies the transaction (verify.js) -> miner forges a new block with all verified transactions (mine.js) -> trader gets the ownership of the stocks and the right to claim using thier private key 
+Initial public offering procedure: investor gets receiving address from the company side (receiving_address.js) -> investor requests to buy stocks (trade.js) -> investor pays the company with their newly generated signature sender address (not the private key) -> company acknowledges the payment by signing with their secret key (acknowledge.js) -> miner verifies the transaction (verify.js) -> miner forges a new block with all verified transactions (mine.js) -> investor gets the ownership of the stocks and the right to claim using thier private key 
 
-(Since the companies will have an automated payment system, acknowledgement from the trader for receiving payment is not included. Instead, companies themselves send an automatic acknowledgement to the miners to complete the transaction when the trader sells stocks)
+The trading process which is not simulated here, should also follow the same protocols.
 
 Execution of trade.js and acknowledge.js: 
 
