@@ -25,7 +25,7 @@ For adding the required node modules, run $npm install
 
 Initial public offering procedure: investor gets receiving address from the company side (receiving_address.js) -> investor requests to buy stocks (trade.js) -> investor pays the company with their newly generated signature sender address (not the private key) -> company acknowledges the payment by signing with their secret key (acknowledge.js) -> miner verifies the transaction (verify.js) -> miner forges a new block with all verified transactions (mine.js) -> investor gets the ownership of the stocks and the right to claim using thier private key 
 
-The trading process which is not simulated here, should also follow the same protocols.
+The trading process between buyers and sellers, which is not simulated here, should also follow the same protocols.
 
 Execution of trade.js and acknowledge.js: 
 
