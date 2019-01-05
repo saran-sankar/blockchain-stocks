@@ -1,4 +1,4 @@
-# CryptoStock
+# Blockchain for Stock Trading
 A simple blockchain that can be used for stock trading and can replace stock exchanges
 
 Based on: https://github.com/dvf/blockchain
