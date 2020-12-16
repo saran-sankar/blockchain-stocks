@@ -33,4 +33,4 @@ $node trade.js <qty(eg:100)> <stock symbol(eg:NKE)> <sender address(eg: a0bdbb8f
   
 $node acknowledge.js <stock symbol(eg:NKE)> <sender address(eg: ef716131cd43471fbe2dded005588789)>
 
-A web exchance to go with this: https://github.com/saran-sankar/cryptoStockExchange
+A web exchange appication to go with this: https://github.com/saran-sankar/cryptoStockExchange
